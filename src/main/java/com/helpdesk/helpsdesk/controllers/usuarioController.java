@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -24,27 +25,37 @@ public class usuarioController {
     private  IUsuarioService iUsuarioService;
     @Transactional(readOnly = true)
     @GetMapping("/usuarios")
-    public List<Usuario> obtUsuarios(){
-        return iUsuarioService.obtenerUsuarios();
+    public ResponseEntity<List<Usuario>> obtUsuarios(){
+        return  ResponseEntity.ok().body( iUsuarioService.obtenerUsuarios());
     }
 
     @Transactional(readOnly = true)
     @GetMapping("/usuario/{numSec}")
-    public Usuario obtUsuarioNumSec(@PathVariable Long numSec){
-      return iUsuarioService.obtUsByNumSec(numSec);
+    public ResponseEntity<Usuario> obtUsuarioNumSec(@PathVariable Long numSec){
+      return ResponseEntity.ok().body(iUsuarioService.obtUsByNumSec(numSec));
     }
 
     @Transactional
     @PostMapping("/eliminarUs/{numSec}")
-    public Usuario eliminarUsuario(@PathVariable Long numSec){
+    public ResponseEntity<?> eliminarUsuario(@PathVariable Long numSec){
 
-            Usuario usuarioaBorrar= new Usuario();
-            usuarioaBorrar.setEstado("AN");
             iUsuarioService.borrar_usuario(numSec);
-            return usuarioaBorrar;
-
-
+        return ResponseEntity.noContent().build();
     }
+   @Transactional
+   @PostMapping("/modificarUsuario/{numSec}")
+   public void ModificarUsuario (@PathVariable Long numSec){
+   }
 
+   @Transactional
+   @GetMapping("/deshablitarUs/{numSec}")
+    public ResponseEntity<?> DeshabilitaUsuario(@PathVariable Long numSec){
+        Boolean deshabilitado = iUsuarioService.deshabilitarUsuario(numSec);
+        if (deshabilitado){
+          return ResponseEntity.noContent().build();
+        } else{
+          return ResponseEntity.notFound().build();
+        }
+   }
 }
 

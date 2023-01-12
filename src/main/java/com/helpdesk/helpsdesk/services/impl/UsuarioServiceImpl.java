@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RequiredArgsConstructor
@@ -20,8 +21,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
 
     @Override
       public List<Usuario> obtenerUsuarios() {
-        List <Usuario> res = usuarioRepository.findAll();
-        return res;
+        return usuarioRepository.findAll();
+
     }
 
     @Override
@@ -55,9 +56,19 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-
     public void borrar_usuario(Long numSec) {
         usuarioRepository.deleteByNumSec(numSec);
 
+    }
+    @Override
+    public Boolean deshabilitarUsuario(Long numSec){
+        Usuario usuarioBase = usuarioRepository.findByNumSec(numSec);
+        if (usuarioBase!=null){
+            usuarioBase.setEstado("AN");
+            usuarioRepository.save(usuarioBase);
+            return true;
+        }else{
+           return false;
+        }
     }
 }
