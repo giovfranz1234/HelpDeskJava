@@ -2,11 +2,14 @@ package com.helpdesk.helpsdesk.controllers;
 
 
 import com.helpdesk.helpsdesk.modelos.Usuario;
+import com.helpdesk.helpsdesk.services.Dto.datosUsuarioRequest;
 import com.helpdesk.helpsdesk.services.IUsuarioService;
 import lombok.RequiredArgsConstructor;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
@@ -23,6 +26,7 @@ public class usuarioController {
 
     @Autowired
     private  IUsuarioService iUsuarioService;
+
     @Transactional(readOnly = true)
     @GetMapping("/usuarios")
     public ResponseEntity<List<Usuario>> obtUsuarios(){
@@ -42,19 +46,39 @@ public class usuarioController {
             iUsuarioService.borrar_usuario(numSec);
         return ResponseEntity.noContent().build();
     }
-   @Transactional
-   @PostMapping("/modificarUsuario/{numSec}")
-   public void ModificarUsuario (@PathVariable Long numSec){
-   }
+
 
    @Transactional
    @GetMapping("/deshablitarUs/{numSec}")
+   //@RequestMapping(value = "/deshablitarUs/{numSec}", method = RequestMethod.GET)
     public ResponseEntity<?> DeshabilitaUsuario(@PathVariable Long numSec){
         Boolean deshabilitado = iUsuarioService.deshabilitarUsuario(numSec);
         if (deshabilitado){
-          return ResponseEntity.noContent().build();
+            System.out.println("lo logramos");
+          return ResponseEntity.ok(deshabilitado);
+
         } else{
-          return ResponseEntity.notFound().build();
+          return  ResponseEntity.ok(deshabilitado);
+        }
+   }
+   @Transactional
+   @GetMapping ("/crearUsuario")
+    public  ResponseEntity<?> crearUsuario(@RequestBody datosUsuarioRequest datosUsuario ){
+        Usuario usuario= new Usuario();
+        usuario.setNombres(datosUsuario.getNombres());
+        usuario.setApPaterno(datosUsuario.getApPaterno());
+        usuario.setApMaterno(datosUsuario.getApMaterno());
+        usuario.setDocIdentidad(datosUsuario.getDocIdentidad());
+        usuario.setTipoUsuario(datosUsuario.getTipoUsuario());
+        usuario.setEstado(datosUsuario.getEstado());
+        usuario.setFechaNac(datosUsuario.getFechaNac());
+        usuario.setFechaRegistro(datosUsuario.getFechaRegistro());
+
+        Boolean creado = iUsuarioService.crearUsuario(usuario);
+        if(creado){
+            return  ResponseEntity.ok(HttpStatus.CREATED);
+        }else{
+           return  ResponseEntity.ok().body(creado);
         }
    }
 }

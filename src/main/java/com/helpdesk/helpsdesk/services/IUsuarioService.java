@@ -14,4 +14,6 @@ public interface IUsuarioService {
 
     void borrar_usuario(Long numSec);
     Boolean deshabilitarUsuario(Long numSec);
+
+    Boolean crearUsuario(Usuario usuario);
 }

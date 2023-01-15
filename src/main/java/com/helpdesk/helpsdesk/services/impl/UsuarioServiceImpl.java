@@ -71,4 +71,13 @@ public class UsuarioServiceImpl implements IUsuarioService {
            return false;
         }
     }
+    public Boolean crearUsuario(Usuario usuario){
+      Usuario guardado = usuarioRepository.save(usuario);
+      if (guardado != null){
+        return true;
+      }else{
+         return false;
+      }
+
+    }
 }
