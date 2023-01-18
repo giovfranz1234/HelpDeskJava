@@ -2,6 +2,7 @@ package com.helpdesk.helpsdesk.services.impl;
 
 
 import com.helpdesk.helpsdesk.modelos.Equipo;
+import com.helpdesk.helpsdesk.modelos.Usuario;
 import com.helpdesk.helpsdesk.repositories.EquipoRepository;
 import com.helpdesk.helpsdesk.services.IEquipoService;
 
@@ -18,7 +19,17 @@ public class EquipoServiceImpl implements IEquipoService {
 
     @Override
     public List<Equipo> ObtenerEquipos(){
-      List<Equipo> res= equipoRepository.findAll();
-      return  res;
+        return equipoRepository.findAll();
     }
+    @Override
+    public Equipo obtenerEquipoSec(Long numSec) {
+        return equipoRepository.findByNumSec(numSec);
+    }
+
+    @Override
+    public Equipo guardar_equipo(Equipo equipo) {
+        return equipoRepository.save(equipo);
+    }
+
+
 }

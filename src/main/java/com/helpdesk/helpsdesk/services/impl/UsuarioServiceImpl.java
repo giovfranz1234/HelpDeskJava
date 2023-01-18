@@ -26,13 +26,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-
     public Usuario obtUsByNumSec(Long numSec) {
         return usuarioRepository.findByNumSec(numSec);
     }
 
     @Override
-
     public Usuario guardar_usuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
@@ -51,8 +49,8 @@ public class UsuarioServiceImpl implements IUsuarioService {
         usuarioBase.setTipoUsuario(usActualizado.getTipoUsuario());
         usuarioBase.setFechaRegistro(usActualizado .getFechaRegistro());
         usuarioBase.setEstado(usActualizado.getEstado());
-
         return usuarioRepository.save(usuarioBase);
+
     }
 
     @Override
