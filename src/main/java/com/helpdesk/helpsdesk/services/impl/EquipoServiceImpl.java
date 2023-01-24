@@ -31,5 +31,22 @@ public class EquipoServiceImpl implements IEquipoService {
         return equipoRepository.save(equipo);
     }
 
+    @Override
+    public void borrar_equipo(Long numSec) {
+        equipoRepository.deleteByNumSec(numSec);
+
+    }
+    @Override
+    public Boolean deshabilitarEquipo(Long numSec){
+        Equipo EquipoBase = equipoRepository.findByNumSec(numSec);
+        if (EquipoBase!=null){
+            EquipoBase.setEstado("AN");
+            equipoRepository.save(EquipoBase);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }

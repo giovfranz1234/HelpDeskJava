@@ -17,20 +17,20 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "numSec")
     private Long numSec;
-    @Column (name = "nombres")
+    @Column (name = "nombres", nullable = false)
     private String nombres;
-    @Column (name = "ap_paterno")
+    @Column (name = "ap_paterno",nullable = false)
     private String apPaterno;
     @Column (name = "ap_materno")
     private String apMaterno;   
-    @Column (name = "doc_identidad")
+    @Column (name = "doc_identidad",nullable = false)
     private String docIdentidad;
     @Column (name = "fecha_nac" )
     private Date fechaNac;
-    @Column (name = "tipo_usuario")
+    @Column (name = "tipo_usuario",nullable = false)
     private String tipoUsuario;
     @Column (name = "fecha_registro")
     private Date fechaRegistro;
-    @Column (name = "estado")
+    @Column (name = "estado",nullable = false)
     private String estado;
 }

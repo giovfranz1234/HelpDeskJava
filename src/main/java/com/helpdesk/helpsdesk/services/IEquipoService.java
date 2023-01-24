@@ -9,7 +9,7 @@ public interface IEquipoService {
     List<Equipo> ObtenerEquipos();
     Equipo obtenerEquipoSec(Long numSec);
     Equipo guardar_equipo(Equipo equipo);
-
-
+    void borrar_equipo(Long numSec);
+    Boolean deshabilitarEquipo(Long numSec);
 
 }

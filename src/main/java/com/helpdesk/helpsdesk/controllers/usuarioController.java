@@ -32,13 +32,11 @@ public class usuarioController {
     public ResponseEntity<List<Usuario>> obtUsuarios(){
         return  ResponseEntity.ok().body( iUsuarioService.obtenerUsuarios());
     }
-
     @Transactional(readOnly = true)
     @GetMapping("/usuario/{numSec}")
     public ResponseEntity<Usuario> obtUsuarioNumSec(@PathVariable Long numSec){
       return ResponseEntity.ok().body(iUsuarioService.obtUsByNumSec(numSec));
     }
-
     @Transactional
     @PostMapping("/eliminarUs/{numSec}")
     public ResponseEntity<?> eliminarUsuario(@PathVariable Long numSec){
@@ -46,11 +44,9 @@ public class usuarioController {
             iUsuarioService.borrar_usuario(numSec);
         return ResponseEntity.noContent().build();
     }
-
-
-   @Transactional
-   @GetMapping("/deshablitarUs/{numSec}")
-   //@RequestMapping(value = "/deshablitarUs/{numSec}", method = RequestMethod.GET)
+    @Transactional
+    @GetMapping("/deshablitarUs/{numSec}")
+    //@RequestMapping(value = "/deshablitarUs/{numSec}", method = RequestMethod.GET)
     public ResponseEntity<?> DeshabilitaUsuario(@PathVariable Long numSec){
         Boolean deshabilitado = iUsuarioService.deshabilitarUsuario(numSec);
         if (deshabilitado){
@@ -60,9 +56,9 @@ public class usuarioController {
         } else{
           return  ResponseEntity.ok(deshabilitado);
         }
-   }
-   @Transactional
-   @GetMapping ("/crearUsuario")
+    }
+    @Transactional
+    @GetMapping ("/crearUsuario")
     public  ResponseEntity<?> crearUsuario(@RequestBody datosUsuarioRequest datosUsuario ){
         Usuario usuario= new Usuario();
         usuario.setNombres(datosUsuario.getNombres());
@@ -80,6 +76,5 @@ public class usuarioController {
         }else{
            return  ResponseEntity.ok().body(creado);
         }
-   }
+    }
 }
-
