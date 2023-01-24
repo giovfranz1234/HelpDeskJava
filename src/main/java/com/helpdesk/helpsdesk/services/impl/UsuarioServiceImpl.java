@@ -36,7 +36,6 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
-
     public Usuario actualizar_usuario(Long numSec, Usuario usActualizado) {
 
         Usuario usuarioBase = usuarioRepository.findByNumSec(numSec);
