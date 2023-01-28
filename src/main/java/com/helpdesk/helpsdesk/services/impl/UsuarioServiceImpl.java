@@ -26,6 +26,11 @@ public class UsuarioServiceImpl implements IUsuarioService {
     }
 
     @Override
+     public  List<Usuario> obtenerUsActivos(String estado){
+        return  usuarioRepository.findByEstado(estado);
+    }
+
+    @Override
     public Usuario obtUsByNumSec(Long numSec) {
         return usuarioRepository.findByNumSec(numSec);
     }

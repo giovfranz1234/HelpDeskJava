@@ -30,6 +30,13 @@ public class usuarioController {
     public ResponseEntity<List<Usuario>> obtUsuarios(){
         return  ResponseEntity.ok().body( iUsuarioService.obtenerUsuarios());
     }
+
+    @Transactional(readOnly = true)
+    @GetMapping("usuarioActivo/{estado}")
+    public  ResponseEntity<?>obtUsActivos(@PathVariable String estado){
+      return ResponseEntity.ok().body(iUsuarioService.obtenerUsActivos(estado));
+    }
+
     @Transactional(readOnly = true)
     @GetMapping("/usuario/{numSec}")
     public ResponseEntity<Usuario> obtUsuarioNumSec(@PathVariable Long numSec){

@@ -9,6 +9,7 @@ public interface IUsuarioService {
     List<Usuario> obtenerUsuarios();
 
     Usuario obtUsByNumSec(Long numSec);
+    List<Usuario> obtenerUsActivos(String estado);
     Usuario guardar_usuario(Usuario usuario);
     Usuario actualizar_usuario(Long numSec, Usuario usActualizado);
 

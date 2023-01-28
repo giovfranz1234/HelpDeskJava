@@ -11,5 +11,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
    Usuario findByNumSec(Long numSec);
    void deleteByNumSec(Long numSec);
 
+   List<Usuario> findByEstado(String estado);
+
 
 }
