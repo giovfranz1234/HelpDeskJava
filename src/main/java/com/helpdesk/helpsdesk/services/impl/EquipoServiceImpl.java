@@ -47,11 +47,6 @@ public class EquipoServiceImpl implements IEquipoService {
             return false;
         }
     }
-    @Override
-    public void borrar_usuario(Long numSec) {
-        equipoRepository.deleteByNumSec(numSec);
-
-    }
 
 
 }

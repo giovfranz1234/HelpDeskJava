@@ -63,7 +63,7 @@ public class usuarioController {
         }
     }
     @Transactional
-    @GetMapping ("/crearUsuario")
+    @GetMapping("/crearUsuario")
     public  ResponseEntity<?> crearUsuario(@RequestBody datosUsuarioRequest datosUsuario ){
         Usuario usuario= new Usuario();
         usuario.setNombres(datosUsuario.getNombres());

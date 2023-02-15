@@ -14,7 +14,7 @@ public interface IEquipoService {
     void borrar_equipo(Long numSec);
     Boolean deshabilitarEquipo(Long numSec);
 
-    void borrar_usuario(Long numSec);
+
 
 
     }

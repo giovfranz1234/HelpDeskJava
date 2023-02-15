@@ -34,7 +34,21 @@ public class EquipoController {
     @PostMapping("/eliminarEq/{numSec}")
     public ResponseEntity<?> eliminarEquipo(@PathVariable Long numSec){
 
-        iEquipoService.borrar_usuario(numSec);
+        iEquipoService.borrar_equipo(numSec);
         return ResponseEntity.noContent().build();
+    }
+
+    @Transactional
+    @GetMapping("/deshablitarEq/{numSec}")
+    //@RequestMapping(value = "/deshablitarUs/{numSec}", method = RequestMethod.GET)
+    public ResponseEntity<?> DeshabilitaEquipo(@PathVariable Long numSec){
+        Boolean deshabilitado = iEquipoService.deshabilitarEquipo(numSec);
+        if (deshabilitado){
+            System.out.println("lo logramos");
+            return ResponseEntity.ok(deshabilitado);
+
+        } else{
+            return  ResponseEntity.ok(deshabilitado);
+        }
     }
 }
