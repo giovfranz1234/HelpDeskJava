@@ -43,7 +43,7 @@ public class usuarioController {
       return ResponseEntity.ok().body(iUsuarioService.obtUsByNumSec(numSec));
     }
     @Transactional
-    @PostMapping("/eliminarUs/{numSec}")
+    @GetMapping("/eliminarUs/{numSec}")
     public ResponseEntity<?> eliminarUsuario(@PathVariable Long numSec){
 
             iUsuarioService.borrar_usuario(numSec);
